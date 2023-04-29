@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Put, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body,
+} from '@nestjs/common';
 
 @Controller('teachers')
 export class TeacherController {
@@ -8,18 +16,18 @@ export class TeacherController {
   }
 
   @Get('/:id')
-  getTeacherById() {
-    return 'Get teacher by id';
+  getTeacherById(@Param('id') id: string) {
+    return `Get teacher with id: ${id}`;
   }
 
   @Post()
-  createTeacher() {
-    return 'Create teacher';
+  createTeacher(@Body() body) {
+    return `Create teacher with data ${JSON.stringify(body)}`;
   }
 
   @Put('/:id')
-  updateTeacher() {
-    return 'Update teacher by id';
+  updateTeacher(@Param('id') id: string, @Body() body) {
+    return `Update teacher with id: ${id} with data ${JSON.stringify(body)}`;
   }
 
   @Delete('/:id')

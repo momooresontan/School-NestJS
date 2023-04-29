@@ -28,8 +28,8 @@ export class StudentController {
   }
 
   @Put('/:id')
-  updateStudent() {
-    return 'Update student by id';
+  updateStudent(@Param('id') id: string, @Body() body) {
+    return `Update student with id: ${id} with ${JSON.stringify(body)}`;
   }
 
   @Delete('/:id')
