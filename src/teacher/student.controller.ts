@@ -1,10 +1,14 @@
 /* eslint-disable prettier/prettier */
 import { Controller, Get, Put, Param, Body } from '@nestjs/common';
+import {
+  FindStudentResponseDto,
+  StudentResponseDto,
+} from '../student/dto/student.dto';
 
 @Controller('teachers/:id/students')
 export class StudentTeacherController {
   @Get()
-  getStudents(@Param('id') id: string) {
+  getStudents(@Param('id') id: string): FindStudentResponseDto[] {
     return `Get all students that belong to teacher with id: ${id}`;
   }
 
@@ -13,7 +17,7 @@ export class StudentTeacherController {
     @Param('id') id: string,
     @Param('studentId') studentId: string,
     @Body() body,
-  ) {
+  ): StudentResponseDto {
     return `Update student with id: ${studentId} with data ${JSON.stringify(
       body,
     )} that belongs to teacher with id: ${id}`;
