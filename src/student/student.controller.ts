@@ -1,4 +1,12 @@
-import { Controller, Delete, Get, Post, Put, Param } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Param,
+  Body,
+} from '@nestjs/common';
 
 @Controller('students')
 export class StudentController {
@@ -14,8 +22,9 @@ export class StudentController {
   }
 
   @Post()
-  createStudent() {
-    return 'Create student';
+  createStudent(@Body() body) {
+    //console.log(body);
+    return `Create student with the following data ${JSON.stringify(body)}`;
   }
 
   @Put('/:id')
