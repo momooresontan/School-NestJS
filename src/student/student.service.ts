@@ -63,4 +63,30 @@ export class StudentService {
 
     return removedStudent;
   }
+
+  getStudentByTeacherId(teacherId: string): FindStudentResponseDto[] {
+    return this.students.filter((student) => {
+      return student.teacher;
+    });
+  }
+
+  updateStudentTeacher(
+    teacherId: string,
+    studentId: string,
+  ): StudentResponseDto {
+    let updatedStudent: StudentResponseDto;
+
+    const updatedStudentList = this.students.map((student) => {
+      if (student.id === studentId) {
+        updatedStudent = {
+          ...student,
+          teacher: teacherId,
+        };
+      } else return student;
+    });
+
+    this.students = updatedStudentList;
+
+    return updatedStudent;
+  }
 }

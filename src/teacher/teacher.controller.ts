@@ -8,29 +8,31 @@ import {
   Param,
   Body,
 } from '@nestjs/common';
-
 import {
   CreateTeacherDto,
   UpdateTeacherDto,
   FindTeacherResponseDto,
   TeacherResponseDto,
 } from './dto/teacher.dto';
+import { TeacherService } from './teacher.service';
 
 @Controller('teachers')
 export class TeacherController {
+  constructor(private readonly teacherService: TeacherService) {}
+
   @Get()
   getTeachers(): FindTeacherResponseDto[] {
-    return 'All teachers';
+    return this.teacherService.getTeacher();
   }
 
   @Get('/:id')
   getTeacherById(@Param('id') id: string): FindTeacherResponseDto {
-    return `Get teacher with id: ${id}`;
+    return this.teacherService.getTeacherById(id);
   }
 
   @Post()
   createTeacher(@Body() body: CreateTeacherDto): TeacherResponseDto {
-    return `Create teacher with data ${JSON.stringify(body)}`;
+    return this.teacherService.createTeacher(body);
   }
 
   @Put('/:id')
@@ -38,11 +40,11 @@ export class TeacherController {
     @Param('id') id: string,
     @Body() body: UpdateTeacherDto,
   ): TeacherResponseDto {
-    return `Update teacher with id: ${id} with data ${JSON.stringify(body)}`;
+    return this.teacherService.updateTeacher(body, id);
   }
 
   @Delete('/:id')
-  deleteTeacher() {
-    return 'Delete teacher';
+  deleteTeacher(@Param('id') id: string): FindTeacherResponseDto {
+    return this.teacherService.deleteTeacher(id);
   }
 }
