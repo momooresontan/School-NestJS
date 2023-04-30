@@ -5,6 +5,7 @@ import {
   FindStudentResponseDto,
   CreateStudentDto,
   StudentResponseDto,
+  UpdateStudentDto,
 } from './dto/student.dto';
 
 @Injectable()
@@ -30,5 +31,22 @@ export class StudentService {
     this.students.push(newStudent);
 
     return newStudent;
+  }
+
+  updateStudent(payload: UpdateStudentDto, studentId: string) {
+    let updatedStudent: StudentResponseDto;
+
+    const updatedStudentList = this.students.map((student) => {
+      if (student.id === studentId) {
+        updatedStudent = {
+          id: studentId,
+          ...payload,
+        };
+      } else return student;
+    });
+
+    this.students = updatedStudentList;
+
+    return updatedStudent;
   }
 }

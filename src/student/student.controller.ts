@@ -34,7 +34,7 @@ export class StudentController {
   @Post()
   createStudent(@Body() body: CreateStudentDto): StudentResponseDto {
     //console.log(body);
-    return this.studentService.createStudent();
+    return this.studentService.createStudent(body);
   }
 
   @Put('/:id')
@@ -42,7 +42,7 @@ export class StudentController {
     @Param('id') id: string,
     @Body() body: UpdateStudentDto,
   ): StudentResponseDto {
-    return `Update student with id: ${id} with ${JSON.stringify(body)}`;
+    return this.studentService.updateStudent(body, id);
   }
 
   @Delete('/:id')
