@@ -28,13 +28,13 @@ export class StudentController {
   @Get('/:id')
   getStudentById(@Param('id') id: string): FindStudentResponseDto {
     //console.log(id);
-    return `Get student with id of ${id}`;
+    return this.studentService.getStudentById(id);
   }
 
   @Post()
   createStudent(@Body() body: CreateStudentDto): StudentResponseDto {
     //console.log(body);
-    return `Create student with the following data ${JSON.stringify(body)}`;
+    return this.studentService.createStudent();
   }
 
   @Put('/:id')
