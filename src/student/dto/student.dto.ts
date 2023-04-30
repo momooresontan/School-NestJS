@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export class FindStudentResponseDto {
   id: string;
   name: string;
