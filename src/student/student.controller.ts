@@ -46,7 +46,7 @@ export class StudentController {
   }
 
   @Delete('/:id')
-  deleteStudent() {
-    return 'Delete student';
+  deleteStudent(@Param('id') id: string): FindStudentResponseDto {
+    return this.studentService.deleteStudent(id);
   }
 }

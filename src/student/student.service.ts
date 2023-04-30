@@ -49,4 +49,18 @@ export class StudentService {
 
     return updatedStudent;
   }
+
+  deleteStudent(studentId: string): FindStudentResponseDto {
+    let removedStudent;
+    const newStudentList = this.students.map((student) => {
+      if (student.id === studentId) {
+        const id = this.students.indexOf(student);
+        removedStudent = this.students.splice(id, 1);
+      } else return student;
+    });
+
+    this.students = newStudentList;
+
+    return removedStudent;
+  }
 }
