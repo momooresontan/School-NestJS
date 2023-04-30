@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Delete,
@@ -13,12 +14,15 @@ import {
   FindStudentResponseDto,
   StudentResponseDto,
 } from './dto/student.dto';
+import { StudentService } from './student.service';
 
 @Controller('students')
 export class StudentController {
+  constructor(private readonly studentService: StudentService) {}
+
   @Get()
   getStudents(): FindStudentResponseDto[] {
-    return 'All Students';
+    return this.studentService.getStudent();
   }
 
   @Get('/:id')
