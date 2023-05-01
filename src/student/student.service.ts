@@ -17,14 +17,14 @@ export class StudentService {
 
   getStudentById(studentId: string): FindStudentResponseDto {
     return this.students.find((student) => {
-      student.id === studentId;
+      return student.id === studentId;
     });
   }
 
   createStudent(payload: CreateStudentDto): StudentResponseDto {
     // eslint-disable-next-line prefer-const
     let newStudent = {
-      id: uuid,
+      id: uuid(),
       ...payload,
     };
 
@@ -42,6 +42,7 @@ export class StudentService {
           id: studentId,
           ...payload,
         };
+        return updatedStudent;
       } else return student;
     });
 
@@ -66,7 +67,7 @@ export class StudentService {
 
   getStudentByTeacherId(teacherId: string): FindStudentResponseDto[] {
     return this.students.filter((student) => {
-      return student.teacher;
+      return student.teacher === teacherId;
     });
   }
 
@@ -82,6 +83,7 @@ export class StudentService {
           ...student,
           teacher: teacherId,
         };
+        return updatedStudent;
       } else return student;
     });
 

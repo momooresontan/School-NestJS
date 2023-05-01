@@ -19,14 +19,14 @@ export class TeacherService {
 
   getTeacherById(teacherId: string): FindTeacherResponseDto {
     return this.teachers.find((teacher) => {
-      teacher.id === teacherId;
+      return teacher.id === teacherId;
     });
   }
 
   createTeacher(payload: CreateTeacherDto): TeacherResponseDto {
     // eslint-disable-next-line prefer-const
     let newTeacher = {
-      id: uuid,
+      id: uuid(),
       ...payload,
     };
 
